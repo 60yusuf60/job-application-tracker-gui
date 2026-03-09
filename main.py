@@ -1,5 +1,40 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk,messagebox
+import json
+import os
+
+def add_job(company_entry, position_entry, status_dropdown):
+    company = company_entry.get()
+    position = position_entry.get()
+    status = status_dropdown.get()
+
+    if not company or not position or not status:
+        messagebox.showwarning("Missing Data","Please fill all required fields")
+        return
+
+    job = {
+        "company": company,
+        "position": position,
+        "status": status
+    }
+
+    if os.path.exists("jobs.json"):
+        with open("jobs.json","r") as f:
+            jobs = json.load(f)
+
+    else:
+        jobs = []
+
+    jobs.append(job)
+
+    with open("jobs.json","w") as f:
+        json.dump(jobs,f,indent=4)
+
+    messagebox.showinfo("Success",f"Job at {company} has been added!")
+    company_entry.delete(0, tk.END)
+    position_entry.delete(0, tk.END)
+    status_dropdown.set("")
+
 
 def main():
     window = tk.Tk()
@@ -34,7 +69,8 @@ def main():
     status_dropdown.pack()
 
     # Button
-    add_button = tk.Button(window,text="Add Application")
+    add_button = tk.Button(window,text="Add Application",
+                           command=lambda: add_job(company_entry, position_entry, status_dropdown))
     add_button.pack(pady=10)
 
     window.mainloop()
