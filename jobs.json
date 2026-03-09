@@ -1,7 +1,26 @@
 [
     {
+        "name": "Tester",
         "company": "Google",
         "position": "Software Engineer",
         "status": "Applied"
+    },
+    {
+        "name": "Tester",
+        "company": "Amazon",
+        "position": "Backend Developer",
+        "status": "Interview"
+    },
+    {
+        "name": "Tester",
+        "company": "Walmart",
+        "position": "Cashier",
+        "status": "Offer"
+    },
+    {
+        "name": "Tester",
+        "company": "Amazon",
+        "position": "Delivery Driver",
+        "status": "Rejected"
     }
 ]
